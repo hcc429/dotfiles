@@ -88,6 +88,10 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='nvim'
 # fi
 
+# Fix k9s ui bug
++export LANG="en_US.UTF-8"
++export LC_ALL="en_US.UTF-8"
+
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 

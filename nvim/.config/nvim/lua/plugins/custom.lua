@@ -57,6 +57,13 @@ return {
           desc = "Registers",
         },
         {
+          "<leader>fm",
+          function()
+            Snacks.picker.marks()
+          end,
+          desc = "Marks",
+        },
+        {
           "<leader>h",
           function()
             Snacks.picker.help()
@@ -78,7 +85,7 @@ return {
         {
           "<leader>fs",
           function()
-            Snacks.picker.lsp_workspace_symbols()({ filter = LazyVim.config.kind_filter })
+            Snacks.picker.lsp_workspace_symbols({ filter = LazyVim.config.kind_filter })
           end,
           desc = "LSP symbols",
           has = "documentSymbol",

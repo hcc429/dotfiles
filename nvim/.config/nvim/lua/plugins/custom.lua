@@ -121,8 +121,7 @@ return {
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     opts = {
-      -- add any opts here
-      -- for example
+      hints = { enabled = false },
       provider = "openai",
       openai = {
         endpoint = "https://api.openai.com/v1",
@@ -133,7 +132,7 @@ return {
         --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
       },
       behaviour = {
-        enable_cursor_planning_mode = true,
+        enable_cursor_planning_mode = false,
       },
       vendors = {
         --- ... existing vendors
@@ -145,10 +144,12 @@ return {
           max_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
         },
       },
+      file_selector = {
+        provider = "fzf",
+      },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "stevearc/dressing.nvim",

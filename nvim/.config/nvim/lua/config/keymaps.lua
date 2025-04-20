@@ -16,9 +16,6 @@ map("n", "<BS>", [["_dd]], { desc = "remove a line", noremap = true, silent = tr
 map("x", "<C-H>", [["_d]], { desc = "remove selected text", noremap = true, silent = true })
 map("x", "p", [["_dP]], { desc = "paste over selected text", noremap = true, silent = true })
 
--- delete a word with backspace in insert mode
-map("i", "<C-H>", "<C-W>", { desc = "delete word backward", noremap = true, silent = true })
-
 map("n", "<C-d>", "<C-d>zz", { desc = "scroll down and center" })
 map("n", "<C-u>", "<C-u>zz", { desc = "scroll up and center" })
 map("n", "n", "nzzzv", { desc = "search next and center" })

@@ -13,7 +13,7 @@ map("n", "c", [["_c]], { desc = "change without yanking" })
 map("n", "<CR>", "o<ESC>", { desc = "add blank line below" })
 
 map("n", "<BS>", [["_dd]], { desc = "remove a line", noremap = true, silent = true })
-map("x", "<C-H>", [["_d]], { desc = "remove selected text", noremap = true, silent = true })
+map("x", "<C-BS>", [["_dd]], { desc = "remove a line", noremap = true, silent = true })
 map("x", "p", [["_dP]], { desc = "paste over selected text", noremap = true, silent = true })
 
 map("n", "<C-d>", "<C-d>zz", { desc = "scroll down and center" })

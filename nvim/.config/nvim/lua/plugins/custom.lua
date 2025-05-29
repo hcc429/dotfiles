@@ -52,6 +52,10 @@ return {
       })
     end,
   },
+  {
+    "RRethy/vim-illuminate",
+    event = "VimEnter",
+  },
   -- {
   --   "yetone/avante.nvim",
   --   event = "VeryLazy",

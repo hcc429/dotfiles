@@ -129,4 +129,6 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 source <(kubectl completion zsh)
 complete -o default -F __start_kubectl k
 
+alias ktx=kubectx
+alias kns=kubens
 

@@ -6,7 +6,7 @@ return {
       {
         "<leader>e",
         function()
-          Snacks.explorer({ cwd = LazyVim.root(), hidden = true })
+          Snacks.explorer({ cwd = LazyVim.root(), hidden = true, filter = { ".git", "node_modules" } })
         end,
         desc = "Open Snacks explorer",
       },
@@ -15,7 +15,13 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function()
+      local lspconfig = require('lspconfig')
       local Keys = require("lazyvim.plugins.lsp.keymaps").get()
+
+      lspconfig.clangd.setup {
+        mason = false,
+        cmd = { 'clangd-18' }
+      }
 
       vim.list_extend(Keys, {
         {

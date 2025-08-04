@@ -7,8 +7,8 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "enter command mode" })
 map("i", "jj", "<ESC>")
 
-map("n", "<leader>d", [["_d]], { desc = "delete without yanking" })
-map("n", "c", [["_c]], { desc = "change without yanking" })
+map({ "n", "x" }, "<leader>d", [["_d]], { desc = "delete without yanking" })
+map("n", "<leader>c", [["_c]], { desc = "change without yanking" })
 
 map("n", "<CR>", "o<ESC>", { desc = "add blank line below" })
 

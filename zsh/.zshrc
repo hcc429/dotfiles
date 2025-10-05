@@ -122,6 +122,10 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# ==== go ===
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$GOPATH/bin:$PATH"
 
 # ==== kubernetes ===
 alias k=kubectl
@@ -132,3 +136,4 @@ complete -o default -F __start_kubectl k
 alias ktx=kubectx
 alias kns=kubens
 
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"

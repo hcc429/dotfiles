@@ -15,13 +15,13 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function()
-      local lspconfig = require('lspconfig')
+      local lspconfig = require("lspconfig")
       local Keys = require("lazyvim.plugins.lsp.keymaps").get()
 
-      lspconfig.clangd.setup {
+      lspconfig.clangd.setup({
         mason = false,
-        cmd = { 'clangd-18' }
-      }
+        cmd = { "clangd-18", "--offset-encoding=utf-16" },
+      })
 
       vim.list_extend(Keys, {
         {

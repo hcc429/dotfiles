@@ -24,13 +24,9 @@ map("n", "N", "Nzzzv", { desc = "search prev and center" })
 map("n", "<Tab>", ":bnext<CR>", { desc = "next tab" })
 map("n", "<S-Tab>", ":bprev<CR>", { desc = "previous tab" })
 
-map("n", "L", "$")
-map("n", "H", "^")
+map({ "n", "x", "o" }, "L", "$", { noremap = true })
 
--- g_y won't yank the newline character
-map("x", "L", "g_")
-map("x", "H", "^")
-
+map({ "n", "x", "o" }, "H", "^", { noremap = true })
 -- toggle copilot
 local copilot_enabled = true
 map("n", "<leader>ct", function()

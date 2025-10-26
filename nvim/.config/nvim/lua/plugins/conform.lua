@@ -19,6 +19,8 @@ return {
         json = { 'prettier' },
         html = { 'prettier' },
         css = { 'prettier' },
+        lua = {'stylua'},
+        sh = {"shfmt"}
       },
       format_on_save = conform_opt,
     }

@@ -158,7 +158,6 @@ return {
         },
       },
       gopls = {},
-      ruff = {},
     }
 
     -- Ensure the servers and tools above are installed

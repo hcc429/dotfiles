@@ -11,12 +11,6 @@ local opts = { noremap = true, silent = true }
 -- save file
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 
--- save file without auto-formatting
-vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', opts)
-
--- quit file
-vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
-
 -- delete single character without copying into register
 vim.keymap.set('n', 'x', '"_x', opts)
 
@@ -69,9 +63,6 @@ end, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', function()
   vim.diagnostic.jump { count = 1, float = true }
 end, { desc = 'Go to next diagnostic message' })
-
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- personal settings
 vim.keymap.set('n', '<CR>', 'o<ESC>', { desc = 'add blank line below' })

@@ -78,7 +78,31 @@ return { -- Autocompletion
 
     -- `:` cmdline setup.
     cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline(),
+      mapping = cmp.mapping.preset.cmdline {
+        ['<Down>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+          -- that way you will only jump inside the snippet region
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end, { 'c' }),
+        ['<Up>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { 'c' }),
+        ['<CR>'] = cmp.mapping.confirm { select = true },
+      },
       sources = cmp.config.sources({
         { name = 'path' },
       }, {
@@ -91,7 +115,6 @@ return { -- Autocompletion
       }),
     })
     cmp.setup {
-      preselect = cmp.PreselectMode.None,
       sources = {
         { name = 'nvim_lsp' },
         { name = 'path' },

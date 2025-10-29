@@ -67,8 +67,6 @@ end, { desc = 'Go to next diagnostic message' })
 -- personal settings
 vim.keymap.set('n', '<CR>', 'o<ESC>', { desc = 'add blank line below' })
 
-vim.keymap.set('n', '<BS>', [["_dd]], { desc = 'remove a line', noremap = true, silent = true })
-vim.keymap.set('x', '<C-BS>', [["_dd]], { desc = 'remove a line', noremap = true, silent = true })
 vim.keymap.set('x', 'p', [["_dP]], { desc = 'paste over selected text', noremap = true, silent = true })
 
 vim.keymap.set('n', ';', ':')

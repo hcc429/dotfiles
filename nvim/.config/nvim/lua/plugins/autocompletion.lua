@@ -69,13 +69,6 @@ return { -- Autocompletion
       TypeParameter = '󰊄',
     }
 
-    cmp.setup.cmdline('/', {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = 'buffer' },
-      },
-    })
-
     -- `:` cmdline setup.
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline {
@@ -115,14 +108,28 @@ return { -- Autocompletion
       }),
     })
     cmp.setup {
+      preselect = cmp.PreselectMode.None,
       sources = {
         { name = 'nvim_lsp' },
         { name = 'path' },
       },
       mapping = cmp.mapping.preset.insert {
-        ['<Down>'] = cmp.mapping.select_prev_item(),
-        ['<Up>'] = cmp.mapping.select_next_item(),
+        ['<Up>'] = cmp.mapping.select_prev_item(),
+        ['<Down>'] = cmp.mapping.select_next_item(),
         ['<CR>'] = cmp.mapping.confirm { select = true },
+      },
+      formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
+        format = function(entry, vim_item)
+          vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+          vim_item.menu = ({
+            nvim_lsp = '[LSP]',
+            luasnip = '[Snippet]',
+            buffer = '[Buffer]',
+            path = '[Path]',
+          })[entry.source.name]
+          return vim_item
+        end,
       },
     }
   end,

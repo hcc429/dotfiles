@@ -1,0 +1,48 @@
+-- Standalone plugins with less than 10 lines of config go here
+return {
+  {
+    -- Detect tabstop and shiftwidth automatically
+    'tpope/vim-sleuth',
+  },
+  {
+    -- Hints keybinds
+    'folke/which-key.nvim',
+  },
+  {
+    -- Autoclose parentheses, brackets, quotes, etc.
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    opts = {},
+  },
+  {
+    -- Highlight todo, notes, etc in comments
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false },
+  },
+  {
+    -- High-performance color highlighter
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup()
+    end,
+  },
+  {
+    'rcarriga/nvim-notify',
+    config = function()
+      require('notify').setup {
+        background_colour = '#000000',
+      }
+    end,
+  },
+  {
+    'zbirenbaum/copilot-cmp',
+    config = function()
+      require('copilot_cmp').setup()
+    end,
+  },
+  { 'nvim-mini/mini.icons', version = false },
+  { 'nvim-tree/nvim-web-devicons', opts = {} },
+}

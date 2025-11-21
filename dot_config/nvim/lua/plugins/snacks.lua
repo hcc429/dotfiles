@@ -1,5 +1,5 @@
 return {
-  'folke/snacks.nvim',
+  "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
   ---@type snacks.Config
@@ -8,15 +8,22 @@ return {
     dashboard = {
       preset = {
         header = [[
-                                                                             
-               ████ ██████           █████      ██                     
-              ███████████             █████                             
-              █████████ ███████████████████ ███   ███████████   
-             █████████  ███    █████████████ █████ ██████████████   
-            █████████ ██████████ █████████ █████ █████ ████ █████   
-          ███████████ ███    ███ █████████ █████ █████ ████ █████  
-         ██████  █████████████████████ ████ █████ █████ ████ ██████ 
-      ]],
+        ⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⡤⠤⠤⠤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠞⠋⠁⠀⠀⠀⠀⠀⠀⠀⠉⠛⢦⣤⠶⠦⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣴⠞⢋⡽⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠃⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣰⠟⠁⠀⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡀⠀⠀⠉⠓⠦⣤⣤⣤⣤⣤⣤⣄⣀⠀⠀⠀
+⠀⠀⠀⠀⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣷⡄⠀⠀⢻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣆⠀
+⠀⠀⣠⠞⠁⠀⠀⣀⣠⣏⡀⠀⢠⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⠿⡃⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡆
+⢀⡞⠁⠀⣠⠶⠛⠉⠉⠉⠙⢦⡸⣿⡿⠀⠀⠀⡄⢀⣀⣀⡶⠀⠀⠀⢀⡄⣀⠀⣢⠟⢦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠃
+⡞⠀⠀⠸⠁⠀⠀⠀⠀⠀⠀⠀⢳⢀⣠⠀⠀⠀⠉⠉⠀⠀⣀⠀⠀⠀⢀⣠⡴⠞⠁⠀⠀⠈⠓⠦⣄⣀⠀⠀⠀⠀⣀⣤⠞⠁⠀
+⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠀⠁⠀⢀⣀⣀⡴⠋⢻⡉⠙⠾⡟⢿⣅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠉⠉⠀⠀⠀⠀
+⠘⣦⡀⠀⠀⠀⠀⠀⠀⣀⣤⠞⢉⣹⣯⣍⣿⠉⠟⠀⠀⣸⠳⣄⡀⠀⠀⠙⢧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠈⠙⠒⠒⠒⠒⠚⠋⠁⠀⡴⠋⢀⡀⢠⡇⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⢀⡾⠋⢻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⢸⡀⠸⡇⠀⠀⠀⠉⠉⠀⠁⠁⠁⠈⢉⠒⠲⣤⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣇⠀⠀⠉⠋⠻⣄⠀⠀⠀⠀⠀⣀⣠⣴⠞⠋⠳⠶⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠦⢤⠤⠶⠋⠙⠳⣆⣀⣈⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  
+]],
       },
     },
     explorer = { enabled = true },
@@ -25,7 +32,7 @@ return {
     notifier = {
       enabled = false,
     },
-    picker = { enabled = true, hidden = true, ignore = { 'node_modules', '.git' } },
+    picker = { enabled = true, hidden = true, ignore = { "node_modules", ".git" } },
     quickfile = { enabled = true },
     scope = { enabled = false },
     scroll = { enabled = false },
@@ -34,93 +41,93 @@ return {
   },
   keys = {
     {
-      '<leader>gg',
+      "<leader>gg",
       function()
         Snacks.lazygit()
       end,
-      desc = 'Lazygit',
+      desc = "Lazygit",
     },
     {
-      '<leader>e',
+      "<leader>e",
       function()
         Snacks.explorer()
       end,
-      desc = 'Snacks Explorer',
+      desc = "Snacks Explorer",
     },
     {
-      '<leader>sk',
+      "<leader>sk",
       function()
         Snacks.picker.keymaps()
       end,
-      desc = '[S]earch [K]eymaps',
+      desc = "[S]earch [K]eymaps",
     },
     {
-      '<leader>sf',
+      "<leader>sf",
       function()
         Snacks.picker.files()
       end,
-      desc = '[S]earch [F]iles',
+      desc = "[S]earch [F]iles",
     },
     {
-      '<leader>sr',
+      "<leader>sr",
       function()
         Snacks.picker.registers()
       end,
-      desc = '[S]earch [R]egisters',
+      desc = "[S]earch [R]egisters",
     },
     {
-      '<leader>sw',
+      "<leader>sw",
       function()
-        Snacks.picker.grep { search = vim.fn.expand '<cword>' }
+        Snacks.picker.grep { search = vim.fn.expand "<cword>" }
       end,
-      desc = '[S]earch current [W]ord',
+      desc = "[S]earch current [W]ord",
     },
     {
-      '<leader>sg',
+      "<leader>sg",
       function()
         Snacks.picker.grep()
       end,
-      desc = '[S]earch by [G]rep',
+      desc = "[S]earch by [G]rep",
     },
     {
-      '<leader>sm',
+      "<leader>sm",
       function()
         Snacks.picker.marks()
       end,
-      desc = '[S]earch [M]arks',
+      desc = "[S]earch [M]arks",
     },
     {
-      '<leader>sd',
+      "<leader>sd",
       function()
         Snacks.picker.diagnostics()
       end,
-      desc = '[S]earch [D]iagnostics',
+      desc = "[S]earch [D]iagnostics",
     },
     {
-      '<leader>sj',
+      "<leader>sj",
       function()
         Snacks.picker.jumps()
       end,
-      desc = '[S]earch [J]umplist',
+      desc = "[S]earch [J]umplist",
     },
     {
-      '<leader>s.',
+      "<leader>s.",
       function()
         Snacks.picker.recent()
       end,
-      desc = '[S]earch Recent Files',
+      desc = "[S]earch Recent Files",
     },
     {
-      '<leader><leader>',
+      "<leader><leader>",
       function()
         Snacks.picker.buffers()
       end,
-      desc = '[ ] Find existing buffers',
+      desc = "[ ] Find existing buffers",
     },
   },
   init = function()
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'VeryLazy',
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "VeryLazy",
       callback = function()
         -- Setup some globals for debugging (lazy-loaded)
         _G.dd = function(...)
@@ -131,7 +138,7 @@ return {
         end
 
         -- Override print to use snacks for `:=` command
-        if vim.fn.has 'nvim-0.11' == 1 then
+        if vim.fn.has "nvim-0.11" == 1 then
           vim._print = function(_, ...)
             dd(...)
           end

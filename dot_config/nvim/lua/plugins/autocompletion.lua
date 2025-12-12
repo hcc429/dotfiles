@@ -67,6 +67,7 @@ return { -- Autocompletion
       Event = '',
       Operator = '󰆕',
       TypeParameter = '󰊄',
+      Copilot = '',
     }
 
     -- `:` cmdline setup.
@@ -110,6 +111,7 @@ return { -- Autocompletion
     cmp.setup {
       preselect = cmp.PreselectMode.None,
       sources = {
+        { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'path' },
       },
@@ -127,6 +129,7 @@ return { -- Autocompletion
             luasnip = '[Snippet]',
             buffer = '[Buffer]',
             path = '[Path]',
+            copilot = '[Copilot]',
           })[entry.source.name]
           return vim_item
         end,

@@ -1,0 +1,9 @@
+font-family = Maple Mono Regular
+font-family = JetBrainsMono NFM Regular
+font-size = 14
+
+
+shell-integration-features = ssh-terminfo,ssh-env
+
+theme = Catppuccin Frappe
+background-opacity = 0.85

@@ -7,3 +7,7 @@ shell-integration-features = ssh-terminfo,ssh-env
 
 theme = Catppuccin Frappe
 background-opacity = 0.85
+background-blur-radius = 20
+
+
+macos-option-as-alt = left

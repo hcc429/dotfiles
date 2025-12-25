@@ -45,4 +45,11 @@ return {
   },
   { 'nvim-mini/mini.icons', version = false },
   { 'nvim-tree/nvim-web-devicons', opts = {} },
+  {
+    'nvim-mini/mini.move',
+    version = false,
+    config = function()
+      require('mini.move').setup()
+    end,
+  },
 }

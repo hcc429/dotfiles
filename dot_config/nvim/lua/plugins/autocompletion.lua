@@ -95,7 +95,13 @@ return { -- Autocompletion
             fallback()
           end
         end, { 'c' }),
-        ['<CR>'] = cmp.mapping.confirm { select = true },
+        ['<CR>'] = cmp.mapping(function(fallback)
+          if cmp.visible() and cmp.get_selected_entry() then
+            cmp.confirm { select = false }
+          else
+            fallback()
+          end
+        end, { 'c' }),
       },
       sources = cmp.config.sources({
         { name = 'path' },
@@ -118,7 +124,13 @@ return { -- Autocompletion
       mapping = cmp.mapping.preset.insert {
         ['<Up>'] = cmp.mapping.select_prev_item(),
         ['<Down>'] = cmp.mapping.select_next_item(),
-        ['<CR>'] = cmp.mapping.confirm { select = true },
+        ['<CR>'] = cmp.mapping(function(fallback)
+          if cmp.visible() and cmp.get_selected_entry() then
+            cmp.confirm { select = false } -- select=false: 不自動選第一個
+          else
+            fallback() -- 真的 Enter
+          end
+        end, { 'i', 's' }),
       },
       formatting = {
         fields = { 'kind', 'abbr', 'menu' },

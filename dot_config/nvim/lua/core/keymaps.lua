@@ -45,13 +45,6 @@ vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', opts)
 vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', opts)
 vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', opts)
 
--- Toggle line wrapping
-vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>', opts)
-
--- Stay in indent mode
-vim.keymap.set('v', '<', '<gv', opts)
-vim.keymap.set('v', '>', '>gv', opts)
-
 -- Keep last yanked when pasting
 vim.keymap.set('v', 'p', '"_dP', opts)
 
@@ -68,7 +61,6 @@ end, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<CR>', 'o<ESC>', { desc = 'add blank line below' })
 
 vim.keymap.set('x', 'p', [["_dP]], { desc = 'paste over selected text', noremap = true, silent = true })
-
 vim.keymap.set('n', ';', ':')
-vim.keymap.set({ 'n', 'x', 'o' }, 'L', '$', { noremap = true })
+vim.keymap.set({ 'n', 'x', 'o' }, 'L', 'g_', { noremap = true })
 vim.keymap.set({ 'n', 'x', 'o' }, 'H', '^', { noremap = true })

@@ -22,11 +22,18 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', opts)
 vim.keymap.set('n', 'n', 'nzzzv', opts)
 vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
+local function resize_if_multiwin(cmd)
+  return function()
+    if vim.fn.winnr '$' > 1 then
+      vim.cmd(cmd)
+    end
+  end
+end
 -- Resize with arrows
-vim.keymap.set('n', '<Up>', ':resize -2<CR>', opts)
-vim.keymap.set('n', '<Down>', ':resize +2<CR>', opts)
-vim.keymap.set('n', '<Left>', ':vertical resize -2<CR>', opts)
-vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>', opts)
+vim.keymap.set('n', '<Up>', resize_if_multiwin 'resize -2', opts)
+vim.keymap.set('n', '<Down>', resize_if_multiwin 'resize +2', opts)
+vim.keymap.set('n', '<Left>', resize_if_multiwin 'vertical resize -2', opts)
+vim.keymap.set('n', '<Right>', resize_if_multiwin 'vertical resize +2', opts)
 
 -- Buffers
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)

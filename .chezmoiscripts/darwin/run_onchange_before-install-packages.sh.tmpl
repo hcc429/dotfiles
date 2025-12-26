@@ -1,0 +1,23 @@
+#!/bin/sh
+set -eufo pipefail
+
+{{ $brews := list
+  "wget"
+  "curl"
+  "git"
+  "xz"
+  "mise" -}}
+
+
+
+{{ $casks := list
+  "ghostty" -}}
+
+brew bundle --file=/dev/stdin <<EOF
+{{- range ($brews | sort | uniq) -}}
+brwe "{{ . }}"
+{{- end -}}
+{{- range ($casks | sort | uniq) -}}
+cask "{{ . }}"
+{{- end -}}
+EOF

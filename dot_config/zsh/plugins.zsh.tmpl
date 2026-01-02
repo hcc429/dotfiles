@@ -1,0 +1,44 @@
+# mise
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
+{{- if eq .chezmoi.os "darwin" }}
+if [[ -o interactive ]] && [[ -r "$HOME/.orbstack/shell/init.zsh" ]]; then
+  source "$HOME/.orbstack/shell/init.zsh"
+fi
+{{- end }}
+
+# zoxide
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+# fzf
+if [[ -o interactive ]] && command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
+
+# fzf-tab
+if [[ -r "$HOME/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh" ]]; then
+  # styles (ok on both)
+  zstyle ':completion:*:git-checkout:*' sort false
+  zstyle ':completion:*:descriptions' format '[%d]'
+  zstyle ':completion:*' menu no
+
+  # LS_COLORS only exists typically on Linux; guard it
+  if [ -n "${LS_COLORS:-}" ]; then
+    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+  fi
+
+  # eza preview only if eza exists
+  if command -v eza >/dev/null 2>&1; then
+    zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+  fi
+
+  zstyle ':fzf-tab:*' use-fzf-default-opts yes
+  zstyle ':fzf-tab:*' switch-group '<' '>'
+
+  source "$HOME/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh"
+fi
+

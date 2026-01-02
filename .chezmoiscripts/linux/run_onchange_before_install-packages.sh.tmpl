@@ -1,13 +1,13 @@
 {{ $packages := list 
-  "curl" 
-  "openssh"
+  "curl"
+  "openssh-server"
   "zsh"
   "git"
-  "build-essential"-}}
+  "build-essential"  -}}
 
 
 {{ $sudo := "sudo " -}}
-{{ if eq .UserName "root" -}}
+{{ if eq .chezmoi.username "root" -}}
   {{ $sudo = "" -}}
 {{ end -}}
 
@@ -17,4 +17,13 @@
 set -eufo pipefail
 
 {{ $sudo }}apt-get update
-{{ $sudo }}apt-get install -y {{ join $packages " " }}
+{{ $sudo }}apt-get install -y {{ $packages | join " " }}
+
+
+
+# install mise
+if ! command -v mise & > /dev/null; then
+  curl https://mise.run | sh
+fi
+
+export PATH="$PATH:$HOME/.local/bin"

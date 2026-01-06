@@ -19,6 +19,11 @@ if [[ -o interactive ]] && command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)
 fi
 
+# disable vim mode
+if [[ -o interactive ]]; then
+  bindkey -e
+fi
+
 # fzf-tab
 if [[ -r "$HOME/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh" ]]; then
   # styles (ok on both)

@@ -1,6 +1,8 @@
 font-family = Maple Mono Regular
 font-family = JetBrainsMono NFM Regular
 font-size = 14
+font-thicken = true
+font-thicken-strength = 1
 
 
 shell-integration-features = ssh-terminfo,ssh-env
@@ -8,6 +10,6 @@ shell-integration-features = ssh-terminfo,ssh-env
 theme = Catppuccin Frappe
 background-opacity = 0.8
 background-blur-radius = 16
-
+alpha-blending = native
 
 macos-option-as-alt = left

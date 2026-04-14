@@ -32,7 +32,84 @@ return {
     notifier = {
       enabled = false,
     },
-    picker = { enabled = true, hidden = true, ignore = { "node_modules", ".git" } },
+    picker = {
+      enabled = true,
+      hidden = true,
+      ignore = { "node_modules", ".git" },
+      sources = {
+        explorer = {
+          actions = {
+            copy_name = function(_, item)
+              if not item then return end
+              local name = vim.fn.fnamemodify(item.file, ":t")
+              vim.fn.setreg("+", name)
+              vim.notify("Copied name: " .. name)
+            end,
+            copy_abs_path = function(_, item)
+              if not item then return end
+              vim.fn.setreg("+", item.file)
+              vim.notify("Copied path: " .. item.file)
+            end,
+            copy_rel_path = function(_, item)
+              if not item then return end
+              local rel = vim.fn.fnamemodify(item.file, ":.")
+              vim.fn.setreg("+", rel)
+              vim.notify("Copied relative path: " .. rel)
+            end,
+            lazygit_log_file = function(_, item)
+              if not item then return end
+              Snacks.lazygit({
+                args = { "-f", item.file },
+                cwd = vim.fn.fnamemodify(item.file, ":h"),
+              })
+            end,
+          },
+          win = {
+            list = {
+              keys = {
+                -- navigation (keep)
+                ["<CR>"] = "confirm",
+                ["l"] = "confirm",
+                ["h"] = "explorer_close",
+                ["<BS>"] = "explorer_up",
+                ["q"] = "close",
+                ["<Esc>"] = "close",
+
+                -- the only file ops I want
+                ["a"] = "explorer_add",       -- create
+                ["d"] = "explorer_del",       -- delete
+                ["r"] = "explorer_rename",    -- rename
+                ["c"] = "explorer_copy",      -- copy file (duplicate in tree)
+                ["p"] = "explorer_paste",     -- paste after copy/cut
+                ["yn"] = "copy_name",         -- yank filename
+                ["yp"] = "copy_abs_path",     -- yank absolute path
+                ["yr"] = "copy_rel_path",     -- yank relative path
+                ["gf"] = "lazygit_log_file",  -- lazygit log for selected file/folder
+
+                -- disable the rest of the defaults so they don't clutter
+                ["m"] = false,                -- move
+                ["o"] = false,                -- system open
+                ["y"] = false,                -- (replaced by yn/yp/yr)
+                ["Y"] = false,
+                ["u"] = false,                -- refresh (use :e)
+                ["<c-c>"] = false,            -- tcd
+                ["."] = false,                -- focus
+                ["I"] = false,                -- toggle ignored
+                ["H"] = false,                -- toggle hidden (leader e again)
+                ["Z"] = false,                -- close all
+                ["z"] = false,
+                ["/"] = false,
+                ["]c"] = false, ["[c"] = false,
+                ["]d"] = false, ["[d"] = false,
+                ["]w"] = false, ["[w"] = false,
+                ["]e"] = false, ["[e"] = false,
+                ["s"] = false,                -- scratch
+              },
+            },
+          },
+        },
+      },
+    },
     quickfile = { enabled = true },
     scope = { enabled = false },
     scroll = { enabled = false },
@@ -46,6 +123,13 @@ return {
         Snacks.lazygit()
       end,
       desc = "Lazygit",
+    },
+    {
+      "<leader>gf",
+      function()
+        Snacks.lazygit.log_file()
+      end,
+      desc = "Lazygit log for current file",
     },
     {
       "<leader>e",
@@ -123,6 +207,20 @@ return {
         Snacks.picker.buffers()
       end,
       desc = "[ ] Find existing buffers",
+    },
+    {
+      "<leader>/",
+      function()
+        Snacks.picker.lines()
+      end,
+      desc = "[/] Fuzzily search in current buffer",
+    },
+    {
+      "<leader>s/",
+      function()
+        Snacks.picker.grep_buffers()
+      end,
+      desc = "[S]earch [/] in Open Files",
     },
   },
   init = function()

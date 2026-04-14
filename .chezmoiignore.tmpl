@@ -4,4 +4,9 @@
 {{ if ne .chezmoi.os "linux" }}
 .chezmoiscripts/linux/**
 {{ end }}
-.config/zsh/env.local.zsh
+.config/zsh/local.zsh
+
+# repo-only docs (don't deploy to $HOME)
+README.md
+CLAUDE.md
+SETTINGS.md

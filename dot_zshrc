@@ -1,5 +1,13 @@
+[[ -o interactive ]] || return
+
 source "$HOME/.config/zsh/history.zsh"
 source "$HOME/.config/zsh/completion.zsh"
+
+# Local machine-only config
+if [ -r "$HOME/.config/zsh/local.zsh" ]; then
+  source "$HOME/.config/zsh/local.zsh"
+fi
+
 source "$HOME/.config/zsh/plugins.zsh"
 source "$HOME/.config/zsh/alias.zsh"
 source "$HOME/.config/zsh/prompt.zsh"

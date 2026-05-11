@@ -63,6 +63,14 @@ return {
                 cwd = vim.fn.fnamemodify(item.file, ":h"),
               })
             end,
+            lazygit_log_folder = function(_, item)
+              if not item then return end
+              local dir = item.file
+              if vim.fn.isdirectory(dir) == 0 then
+                dir = vim.fn.fnamemodify(dir, ":h")
+              end
+              Snacks.lazygit({ args = { "-f", dir } })
+            end,
           },
           win = {
             list = {
@@ -84,7 +92,8 @@ return {
                 ["yn"] = "copy_name",         -- yank filename
                 ["yp"] = "copy_abs_path",     -- yank absolute path
                 ["yr"] = "copy_rel_path",     -- yank relative path
-                ["gf"] = "lazygit_log_file",  -- lazygit log for selected file/folder
+                ["gf"] = { "lazygit_log_file", desc = "Lazygit file history" },
+                ["g/"] = { "lazygit_log_folder", desc = "Lazygit folder history" },
 
                 -- disable the rest of the defaults so they don't clutter
                 ["m"] = false,                -- move
@@ -130,6 +139,13 @@ return {
         Snacks.lazygit.log_file()
       end,
       desc = "Lazygit log for current file",
+    },
+    {
+      "<leader>gl",
+      function()
+        Snacks.lazygit.log()
+      end,
+      desc = "Lazygit full log",
     },
     {
       "<leader>e",

@@ -1,5 +1,5 @@
 [tools]
-neovim = "0.11.5"
+'aqua:neovim/neovim' = "0.11.5"
 go = "1.24"
 python = "3.12"
 node = "lts"
@@ -23,3 +23,7 @@ eza = "latest"
 dyff = "latest"
 pipx = "latest"  # for installing python tools, e.g. ansible
 ansible="latest"
+bun = "1.3.13"
+github-cli = "2.91.0"
+d2 = "latest"
+rtk = "latest"

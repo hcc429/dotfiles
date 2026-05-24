@@ -10,7 +10,8 @@ set -eufo pipefail
 
 
 {{ $casks := list
-  "ghostty" -}}
+  "ghostty"
+  "codex" -}}
 
 brew bundle --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}

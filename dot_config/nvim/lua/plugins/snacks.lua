@@ -56,6 +56,12 @@ return {
               vim.fn.setreg("+", rel)
               vim.notify("Copied relative path: " .. rel)
             end,
+            copy_content = function(_, item)
+              if not item or vim.fn.isdirectory(item.file) == 1 then return end
+              local lines = vim.fn.readfile(item.file)
+              vim.fn.setreg("+", table.concat(lines, "\n"))
+              vim.notify("Copied content: " .. vim.fn.fnamemodify(item.file, ":t"))
+            end,
             lazygit_log_file = function(_, item)
               if not item then return end
               Snacks.lazygit({
@@ -89,6 +95,7 @@ return {
                 ["r"] = "explorer_rename",    -- rename
                 ["c"] = "explorer_copy",      -- copy file (duplicate in tree)
                 ["p"] = "explorer_paste",     -- paste after copy/cut
+                ["yy"] = "copy_content",      -- yank file content
                 ["yn"] = "copy_name",         -- yank filename
                 ["yp"] = "copy_abs_path",     -- yank absolute path
                 ["yr"] = "copy_rel_path",     -- yank relative path

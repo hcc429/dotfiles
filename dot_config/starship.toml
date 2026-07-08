@@ -28,7 +28,16 @@ $cmd_duration\
 $line_break\
 $character"""
 
+# kube context on the right side (kubectx/kubens update it live)
+right_format = "$kubernetes"
+
 palette = 'catppuccin_mocha'
+
+[kubernetes]
+disabled = false
+symbol = "⎈ "
+format = '[$symbol$context( \($namespace\))]($style)'
+style = "blue"
 
 [os]
 disabled = false

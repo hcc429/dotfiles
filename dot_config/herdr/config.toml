@@ -1,0 +1,47 @@
+# herdr config — mirrors ~/.tmux.conf where herdr has an equivalent.
+# Reload in a running session with prefix + Shift+r.
+
+[terminal]
+shell_mode = "auto"
+new_cwd = "follow"        # tmux: most splits/windows opened -c '#{pane_current_path}'
+
+[keys]
+prefix = "ctrl+a"         # tmux: set -g prefix C-a
+
+# splits — same keys & orientation as tmux (| = side-by-side, - = stacked)
+split_vertical = "prefix+|"       # tmux: bind | split-window -h
+split_horizontal = "prefix+minus" # tmux: bind - split-window -v
+
+new_tab = "prefix+c"      # tmux: bind c new-window
+close_pane = "prefix+x"
+zoom = "prefix+z"
+copy_mode = "prefix+["    # tmux: mode-keys vi copy mode
+
+# pane focus on prefix+arrows — tmux: bind Up/Down/Left/Right select-pane
+focus_pane_left  = "prefix+left"
+focus_pane_down  = "prefix+down"
+focus_pane_up    = "prefix+up"
+focus_pane_right = "prefix+right"
+
+# tmux resized with prefix+C-h/j/k/l; herdr uses a resize mode, then h/j/k/l
+resize_mode = "prefix+r"
+
+toggle_sidebar = "prefix+b"
+detach = "prefix+q"
+
+[[keys.command]]
+key = "prefix+alt+g"
+type = "pane"
+command = "lazygit"
+description = "run lazygit"
+
+[theme]
+name = "catppuccin"       # tmux: @catppuccin_flavor "mocha" (dark)
+
+[ui]
+mouse_capture = true      # tmux: set -g mouse on
+pane_borders = true
+accent = "magenta"        # tmux: pane-active-border-style fg=magenta
+
+[advanced]
+scrollback_limit_bytes = 33554432  # ~32MB; tmux history-limit is 100000 *lines*, herdr counts bytes

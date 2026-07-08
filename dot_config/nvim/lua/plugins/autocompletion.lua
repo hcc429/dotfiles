@@ -117,7 +117,6 @@ return { -- Autocompletion
     cmp.setup {
       preselect = cmp.PreselectMode.None,
       sources = {
-        { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'path' },
       },

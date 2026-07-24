@@ -1,3 +1,4 @@
+onboarding = false
 # herdr config — mirrors ~/.tmux.conf where herdr has an equivalent.
 # Reload in a running session with prefix + Shift+r.
 
@@ -36,12 +37,17 @@ command = "lazygit"
 description = "run lazygit"
 
 [theme]
-name = "catppuccin"       # tmux: @catppuccin_flavor "mocha" (dark)
+name = "catppuccin"
 
+auto_switch = false
 [ui]
 mouse_capture = true      # tmux: set -g mouse on
 pane_borders = true
 accent = "magenta"        # tmux: pane-active-border-style fg=magenta
 
+agent_panel_sort = "spaces"
 [advanced]
 scrollback_limit_bytes = 33554432  # ~32MB; tmux history-limit is 100000 *lines*, herdr counts bytes
+
+[experimental]
+pane_history = true       # keep pane screen history across full server restarts

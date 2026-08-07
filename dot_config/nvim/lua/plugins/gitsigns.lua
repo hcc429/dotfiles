@@ -18,4 +18,7 @@ return {
     },
     current_line_blame = true,
   },
+  keys = {
+    { '<leader>gb', '<cmd>Gitsigns blame_line full=true<cr>', desc = '[G]it [B]lame line' },
+  },
 }

@@ -37,6 +37,39 @@ return {
       hidden = true,
       ignore = { "node_modules", ".git" },
       sources = {
+        git_log_line = {
+          actions = {
+            lazygit_commit = function(picker, item)
+              if not item then return end
+              picker:close()
+              vim.fn.setreg("+", item.commit)
+              Snacks.lazygit({
+                args = { "-f", item.file },
+                cwd = item.cwd,
+              })
+              vim.notify("Lazygit filtered on file — commit " .. item.commit:sub(1, 8) .. " copied (press / to search)")
+            end,
+            yank_commit = function(_, item)
+              if not item then return end
+              vim.fn.setreg("+", item.commit)
+              vim.notify("Copied commit: " .. item.commit)
+            end,
+          },
+          win = {
+            input = {
+              keys = {
+                ["<c-g>"] = { "lazygit_commit", mode = { "n", "i" } },
+                ["yc"] = { "yank_commit", mode = { "n" } },
+              },
+            },
+            list = {
+              keys = {
+                ["<c-g>"] = "lazygit_commit",
+                ["yc"] = "yank_commit",
+              },
+            },
+          },
+        },
         explorer = {
           actions = {
             copy_name = function(_, item)
@@ -55,6 +88,31 @@ return {
               local rel = vim.fn.fnamemodify(item.file, ":.")
               vim.fn.setreg("+", rel)
               vim.notify("Copied relative path: " .. rel)
+            end,
+            copy_to = function(picker, item)
+              if not item then return end
+              local from = item.file
+              Snacks.input({
+                prompt = "Copy to (relative to cwd)",
+                default = vim.fn.fnamemodify(from, ":."),
+                completion = "file",
+              }, function(value)
+                if not value or value:find("^%s*$") then return end
+                local to = vim.fs.normalize(vim.fn.fnamemodify(value, ":p"))
+                local stat = vim.uv.fs_stat(to)
+                if stat and stat.type == "directory" then
+                  to = to .. "/" .. vim.fn.fnamemodify(from, ":t")
+                  stat = vim.uv.fs_stat(to)
+                end
+                if to == vim.fs.normalize(from) then return end
+                if stat then
+                  Snacks.notify.warn("File already exists:\n- `" .. to .. "`")
+                  return
+                end
+                Snacks.picker.util.copy_path(from, to)
+                require("snacks.explorer.tree"):refresh(vim.fs.dirname(to))
+                require("snacks.explorer.actions").update(picker, { target = to })
+              end)
             end,
             copy_content = function(_, item)
               if not item or vim.fn.isdirectory(item.file) == 1 then return end
@@ -93,8 +151,9 @@ return {
                 ["a"] = "explorer_add",       -- create
                 ["d"] = "explorer_del",       -- delete
                 ["r"] = "explorer_rename",    -- rename
-                ["c"] = "explorer_copy",      -- copy file (duplicate in tree)
-                ["p"] = "explorer_paste",     -- paste after copy/cut
+                ["c"] = "copy_to",            -- copy to path (prefilled, <Tab> completes)
+                ["p"] = "explorer_paste",     -- paste yanked files into dir under cursor
+                ["yf"] = "explorer_yank",     -- yank file(s) for paste
                 ["yy"] = "copy_content",      -- yank file content
                 ["yn"] = "copy_name",         -- yank filename
                 ["yp"] = "copy_abs_path",     -- yank absolute path
@@ -105,7 +164,7 @@ return {
                 -- disable the rest of the defaults so they don't clutter
                 ["m"] = false,                -- move
                 ["o"] = false,                -- system open
-                ["y"] = false,                -- (replaced by yn/yp/yr)
+                ["y"] = false,                -- bare y disabled; prefix for yf/yy/yn/yp/yr
                 ["Y"] = false,
                 ["u"] = false,                -- refresh (use :e)
                 ["<c-c>"] = false,            -- tcd
@@ -153,6 +212,13 @@ return {
         Snacks.lazygit.log()
       end,
       desc = "Lazygit full log",
+    },
+    {
+      "<leader>gb",
+      function()
+        Snacks.picker.git_log_line()
+      end,
+      desc = "[G]it [B]lame line (<c-g> hands off to lazygit)",
     },
     {
       "<leader>e",

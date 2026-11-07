@@ -1,4 +1,15 @@
 #!/bin/bash
+set -eufo pipefail
 
 # mise.toml hash: {{ include "dot_config/mise/config.toml" |  sha256sum }}
+
+# chezmoi scripts run in a fresh shell; make sure mise is on PATH
+# (linux: ~/.local/bin via mise.run, darwin: homebrew)
+export PATH="$HOME/.local/bin:$PATH"
+{{- if eq .chezmoi.os "darwin" }}
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+{{- end }}
+
 mise install

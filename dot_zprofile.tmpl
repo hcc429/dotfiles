@@ -7,4 +7,6 @@ fi
 # Common env exports
 [ -r "$HOME/.config/zsh/env.zsh" ] && source "$HOME/.config/zsh/env.zsh"
 
-eval "$(mise activate zsh --shims)"
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh --shims)"
+fi

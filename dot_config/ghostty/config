@@ -5,7 +5,7 @@ font-thicken = true
 font-thicken-strength = 1
 
 
-shell-integration-features = ssh-terminfo,ssh-env
+shell-integration-features = ssh-env,sudo
 
 theme = Catppuccin Frappe
 background-opacity = 0.8

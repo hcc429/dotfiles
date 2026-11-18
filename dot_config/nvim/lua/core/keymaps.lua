@@ -52,9 +52,6 @@ vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', opts)
 vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', opts)
 vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', opts)
 
--- Keep last yanked when pasting
-vim.keymap.set('v', 'p', '"_dP', opts)
-
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', function()
   vim.diagnostic.jump { count = -1, float = true }

@@ -65,8 +65,6 @@ vim.keymap.set('n', ']d', function()
 end, { desc = 'Go to next diagnostic message' })
 
 -- personal settings
-vim.keymap.set('n', '<CR>', 'o<ESC>', { desc = 'add blank line below' })
-
 vim.keymap.set('x', 'p', [["_dP]], { desc = 'paste over selected text', noremap = true, silent = true })
 vim.keymap.set('n', ';', ':')
 vim.keymap.set({ 'n', 'x', 'o' }, 'L', 'g_', { noremap = true })

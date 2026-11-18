@@ -8,6 +8,7 @@ jq = "latest"
 yq = "latest"
 fzf = "latest"
 ripgrep = "latest"
+tree-sitter = "latest"  # nvim-treesitter (main branch) compiles parsers with this CLI
 zoxide = "latest"
 lazygit = "latest"
 k9s = "latest"

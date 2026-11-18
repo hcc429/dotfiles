@@ -158,6 +158,16 @@ return {
       gopls = {},
       vtsls = {},
       pyright = {},
+      clangd = {
+        cmd = {
+          'clangd',
+          '--background-index', -- index the whole project for cross-file references
+          '--clang-tidy', -- surface clang-tidy checks as diagnostics (configure via .clang-tidy)
+          '--header-insertion=iwyu',
+          '--completion-style=detailed',
+          '--function-arg-placeholders=0',
+        },
+      },
     }
 
     -- Ensure the servers and tools above are installed

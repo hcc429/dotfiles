@@ -9,6 +9,8 @@ return { -- Highlight, edit, and navigate code
     local ts = require 'nvim-treesitter'
 
     ts.install {
+      'c',
+      'cpp',
       'lua',
       'python',
       'javascript',

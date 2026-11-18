@@ -52,9 +52,6 @@ vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', opts)
 vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', opts)
 vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', opts)
 
--- Keep last yanked when pasting
-vim.keymap.set('v', 'p', '"_dP', opts)
-
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', function()
   vim.diagnostic.jump { count = -1, float = true }
@@ -65,8 +62,6 @@ vim.keymap.set('n', ']d', function()
 end, { desc = 'Go to next diagnostic message' })
 
 -- personal settings
-vim.keymap.set('n', '<CR>', 'o<ESC>', { desc = 'add blank line below' })
-
 vim.keymap.set('x', 'p', [["_dP]], { desc = 'paste over selected text', noremap = true, silent = true })
 vim.keymap.set('n', ';', ':')
 vim.keymap.set({ 'n', 'x', 'o' }, 'L', 'g_', { noremap = true })

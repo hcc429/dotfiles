@@ -12,7 +12,6 @@ return {
     -- Autoclose parentheses, brackets, quotes, etc.
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
-    config = true,
     opts = {},
   },
   {
@@ -35,13 +34,6 @@ return {
       require('notify').setup {
         background_colour = '#000000',
       }
-    end,
-  },
-  {
-    'zbirenbaum/copilot-cmp',
-    enabled = false,
-    config = function()
-      require('copilot_cmp').setup()
     end,
   },
   { 'nvim-mini/mini.icons', version = false },

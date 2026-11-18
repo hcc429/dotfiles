@@ -37,13 +37,6 @@ return {
       }
     end,
   },
-  {
-    'zbirenbaum/copilot-cmp',
-    enabled = false,
-    config = function()
-      require('copilot_cmp').setup()
-    end,
-  },
   { 'nvim-mini/mini.icons', version = false },
   { 'nvim-tree/nvim-web-devicons', opts = {} },
   {

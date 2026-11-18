@@ -16,9 +16,9 @@ return {
       topdelete = { text = '‾' },
       changedelete = { text = '~' },
     },
+    -- Show blame for the cursor line as virtual text after the cursor rests (default 1000ms).
+    -- Don't add `keys` here: lazy.nvim would turn it into load-on-keypress and gitsigns
+    -- would never start (that's what broke it on 2026-08-07).
     current_line_blame = true,
-  },
-  keys = {
-    { '<leader>gb', '<cmd>Gitsigns blame_line full=true<cr>', desc = '[G]it [B]lame line' },
   },
 }
